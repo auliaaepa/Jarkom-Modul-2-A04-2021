@@ -401,13 +401,63 @@ Pada soal ini diminta untuk membuat subdomain **general.mecha.franky.a04.com** d
 Pada soal ini diminta untuk melakukan konfigurasi pada webserver **www.franky.a04.com** dengan DocumentRoot pada `/var/www/franky.a04.com`.
 
 **Penjelasan**
-1. Pastikan semua Record A dan PTR pada **/etc/bind/kaizoku/franky.a04.com**, **/etc/bind/kaizoku/2.1.10.in-addr.arpa**, dan **/etc/bind/sunnygo/mecha.franky.a04.com** mengarah ke IP Skypie (10.1.2.4)
+1. Install apache2 beserta librarynya dan php
+```
+apt-get update
+apt-get install apache2 -y
+apt-get install libapache2-mod-php7.0 -y
+apt-get install php -y
+```
+2. Copy /etc/apache2/sites-available/000-default.conf
+```
+cp /etc/apache2/sites-available/000-default.conf 
+/etc/apache2/sites-available/franky.a04.com.conf
+```
+3. Ubah /etc/apache2/sites-available/franky.a04.com.conf
+```
+echo ‘<VirtualHost *:80>
+        ServerName franky.a04.com
+        ServerAlias www.franky.a04.com
+        ServerAdmin webmaster@localhost
+        DocumentRoot /var/www/franky.a04.com
+
+        ErrorLog ${APACHE_LOG_DIR}/error.log
+        CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>
+‘ > /etc/apache2/sites-available/franky.a04.com.conf
+```
+4. Buat folder franky.a04.com di dalam /var/www
+```
+mkdir /var/www/franky.a04.com
+```
+5. Download file website
+```
+wget 
+https://raw.githubusercontent.com/FeinardSlim/Praktikum-Modul-2-Jarkom/main/franky.zip
+```
+6. Unzip file dari website
+```
+unzip franky.zip 
+```
+7. Pindahkan isi semua file website ke folder yang telah dibuat
+```
+mv franky/* /var/www/franky.a04.com
+```
+8. Aktifkan konfigurasi website
+```
+a2ensite franky.a04.com.conf
+```
+9. Restart apache
+```
+service apache2 restart
+```
+10. Pastikan semua Record A dan PTR pada **/etc/bind/kaizoku/franky.a04.com**, **/etc/bind/kaizoku/2.1.10.in-addr.arpa**, dan **/etc/bind/sunnygo/mecha.franky.a04.com** mengarah ke IP Skypie (10.1.2.4)
 ![image](https://user-images.githubusercontent.com/76677130/139524799-12a45015-4fbd-4140-8ff0-567a34af419e.png)
-2. Restart service bind9
+11. Restart service bind9
     ```
     service bind9 restart
     ```
-4. Buka **Skypie**
+12. Buka **Skypie**
 5. a
 6. a
 nano
@@ -600,5 +650,5 @@ ubah
 
 ## Kendala
 Adapun kendala yang dialami selama pengerjaan soal praktikum modul ini adalah sebagai berikut.
-* lynx tidak dapat menampilkan gambarr
+* lynx tidak dapat menampilkan gambar
 * terkadang gns3 tidak terhubung dengan jaringan internet (tidak dapat download dll)
