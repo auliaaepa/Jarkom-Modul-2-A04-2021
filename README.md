@@ -123,13 +123,17 @@ Pada soal ini diminta untuk membuat website utama dengan domain **franky.a04.com
     ```
     service bind9 restart
     ```
-**Hasil Testing**
+
+**Testing**
+* Buka **Longuetown**
+* Ketik command `ping -c 4 franky.a04.com`
+* Ketik command `ping -c 4 www.franky.a04.com` 
 ![image](https://user-images.githubusercontent.com/76677130/139209546-45778282-d881-4271-b39c-a1a14474c2a6.png)
 
 
 
 ## Soal 3
-Pada soal ini diminta untuk membuat subdomain **super.franky.yyy.com** dengan alias **www.super.franky.yyy.com** pada `EniesLobby` dan mengarah ke `Skypie`.
+Pada soal ini diminta untuk membuat subdomain **super.franky.a04.com** dengan alias **www.super.franky.a04.com** pada `EniesLobby` dan mengarah ke `Skypie`.
 
 **Penjelasan**
 1. Buka **EniesLobby**
@@ -153,7 +157,11 @@ Pada soal ini diminta untuk membuat subdomain **super.franky.yyy.com** dengan al
      ```
     service bind9 restart
     ```
-**Hasil Testing**
+
+**Testing**
+* Buka **Longuetown**
+* Ketik command `ping -c 4 super.franky.a04.com`
+* Ketik command `ping -c 4 www.super.franky.a04.com` 
 ![image](https://user-images.githubusercontent.com/76677130/139212019-eb8a6b0f-5e1b-4c9a-870b-e5fc873f07a7.png)
 
 
@@ -195,7 +203,15 @@ Pada soal ini diminta untuk membuat reverse domain dari domain utama (**franky.a
      ```
     service bind9 restart
     ```
-**Hasil Testing**
+
+**Testing**
+* Buka **Longuetown**
+* Unduh dnsutils
+    ```
+    apt-get update
+    apt-get install dnsutils -y
+    ```
+* Ketik command `host -t PTR 10.1.2.2`
 ![image](https://user-images.githubusercontent.com/76677130/139214648-1be858f8-99ae-4033-9490-4b1de3eec452.png)
 
 
@@ -241,7 +257,15 @@ Pada soal ini diminta untuk membuat `Water7` sebagai DNS Slave untuk domain utam
      ```
     service bind9 restart
     ```
-**Hasil Testing**
+
+**Testing**
+* Buka **EniesLobby**
+* Matikan service bind9
+    ```
+    service bind9 stop
+    ```
+* Buka **Longuetown**
+* Ketik command `ping -c 4 franky.a04.com`
 ![image](https://user-images.githubusercontent.com/76677130/139217144-8937b19d-063c-449a-bf87-75a0aeb09593.png)
 
 
@@ -330,7 +354,11 @@ Pada soal ini diminta untuk mendelegasikan subdomain **mecha.franky.a04.com**, y
      ```
     service bind9 restart
     ```
-**Hasil Testing**
+
+**Testing**
+* Buka **Longuetown**
+* Ketik command `ping -c 4 mecha.franky.a04.com`
+* Ketik command `ping -c 4 www.mecha.franky.a04.com` 
 ![image](https://user-images.githubusercontent.com/76677130/139220659-290be6f0-0329-4f64-b4e8-08016f5bf0b6.png)
 
 
@@ -360,13 +388,17 @@ Pada soal ini diminta untuk membuat subdomain **general.mecha.franky.a04.com** d
      ```
     service bind9 restart
     ```
-**Hasil Testing**
+
+**Testing**
+* Buka **Longuetown**
+* Ketik command `ping -c 4 general.mecha.franky.a04.com`
+* Ketik command `ping -c 4 www.general.mecha.franky.a04.com` 
 ![image](https://user-images.githubusercontent.com/76677130/139222372-8abcfcb3-e09d-481e-8229-f980503d9a92.png)
 
 
 
 ## Soal 8
-Pada soal ini diminta untuk .
+Pada soal ini diminta untuk melakukan konfigurasi pada webserver **www.franky.a04.com** dengan DocumentRoot pada `/var/www/franky.a04.com`.
 
 **Penjelasan**
 1. Pastikan semua Record A dan PTR pada **/etc/bind/kaizoku/franky.a04.com**, **/etc/bind/kaizoku/2.1.10.in-addr.arpa**, dan **/etc/bind/sunnygo/mecha.franky.a04.com** mengarah ke IP Skypie (10.1.2.4)
@@ -383,13 +415,20 @@ nano
 ls
 ![image](https://user-images.githubusercontent.com/76677130/139525409-5cfb9e39-8ade-4c4f-b18b-0ad442fe0d1c.png)
 
-**Hasil Testing**
+**Testing**
+* Buka **Longuetown**
+* Unduh lynx
+    ```
+    apt-get update
+    apt-get install lynx -y
+    ```
+* Ketik command `lynx www.franky.a04.com`
 ![8t](https://user-images.githubusercontent.com/76677130/139525954-3578867e-b1a4-44db-870a-299c429e2055.PNG)
 
 
 
 ## Soal 9
-Pada soal ini diminta untuk .
+Pada soal ini diminta untuk mengubah url **www.franky.a04.com/index.php/home** menjadi **www.franky.a04.com/home**.
 
 **Penjelasan**
 1. Buka **Skypie**
@@ -399,13 +438,16 @@ Pada soal ini diminta untuk .
 ![image](https://user-images.githubusercontent.com/76677130/139526346-4b38feb1-33c6-49b7-bc50-19b46ebccede.png)
 ubah
 ![9b](https://user-images.githubusercontent.com/76677130/139526512-2b156b78-9d93-43f3-bc49-c715d7370f05.PNG)
-**Hasil Testing**
+
+**Testing**
+* Buka **Longuetown**
+* Ketik command `lynx www.franky.a04.com/home`
 ![image](https://user-images.githubusercontent.com/76677130/139526509-46ed34ec-10fb-415b-80e5-99adf78e6635.png)
 
 
 
 ## Soal 10
-Pada soal ini diminta untuk .
+Pada soal ini diminta untuk melakukan konfigurasi pada webserver **www.super.franky.a04.com** dengan DocumentRoot pada `/var/www/super.franky.a04.com`.
 
 **Penjelasan**
 1. Buka **Skypie**
@@ -415,13 +457,16 @@ ubah
 ![image](https://user-images.githubusercontent.com/76677130/139526809-7d85cc6f-95b5-4d53-8368-ddc110682d33.png)
 ls
 ![image](https://user-images.githubusercontent.com/76677130/139526981-e7639f95-014c-4fbd-b0ac-12ec7a8e6bf7.png)
-**Hasil Testing**
+
+**Testing**
+* Buka **Longuetown**
+* Ketik command `lynx www.super.franky.a04.com`
 ![image](https://user-images.githubusercontent.com/76677130/139527130-13071e88-f319-4bec-80e5-ac407dbbaa20.png)
 
 
 
 ## Soal 11
-Pada soal ini diminta untuk .
+Pada soal ini diminta untuk hanya membuat directory listing pada folder `public` di webserver **www.super.franky.a04.com**.
 
 **Penjelasan**
 1. Buka **Skypie**
@@ -429,14 +474,18 @@ Pada soal ini diminta untuk .
 3. s
 ubah
 ![image](https://user-images.githubusercontent.com/76677130/139527385-9393ac8d-536e-4324-912a-1283e2b0f712.png)
-**Hasil Testing**
+
+**Testing**
+* Buka **Longuetown**
+* Ketik command `lynx www.super.franky.a04.com/public`
 ![11b](https://user-images.githubusercontent.com/76677130/139527545-dab3dca5-2058-41d0-a8ad-3911ff9d70ab.PNG)
+* Klik pada salah satu directory (`js/`)
 ![11c](https://user-images.githubusercontent.com/76677130/139527546-f1250864-d076-4bb8-9452-269131165e1e.PNG)
 
 
 
 ## Soal 12
-Pada soal ini diminta untuk .
+Pada soal ini diminta untuk mengganti error kode pada webserver **www.super.franky.a04.com** dengan file `404.html` yang berada dalam folder `error`.
 
 **Penjelasan**
 1. Buka **Skypie**
@@ -448,7 +497,7 @@ ubah
 
 
 ## Soal 13
-Pada soal ini diminta untuk .
+Pada soal ini diminta untuk membuat konfigurasi vitual host yang dapat memberikan akses **www.super.franky.a04.com/js** kepada **www.super.franky.a04.com/public/js**.
 
 **Penjelasan**
 1. Buka **Skypie**
@@ -456,13 +505,16 @@ Pada soal ini diminta untuk .
 3. s
 ubah
 ![image](https://user-images.githubusercontent.com/76677130/139527965-0ac9684d-91d6-41c1-951e-951c36db3096.png)
-**Hasil Testing**
+
+**Testing**
+* Buka **Longuetown**
+* Ketik command `lynx www.super.franky.a04.com/js` (dilakukan sebelum nomor 11)
 ![image](https://user-images.githubusercontent.com/76677130/139528291-881d8c8a-e181-4212-8e17-ad4d8b5a0e55.png)
 
 
 
 ## Soal 14
-Pada soal ini diminta untuk .
+Pada soal ini diminta untuk melakukan konfigurasi pada webserver **www.general.mecha.franky.a04.com** dengan port `15000` dan `15500` serta DocumentRoot terletak pada `/var/www/general.mecha.franky.a04.com`.
 
 **Penjelasan**
 1. Buka **Skypie**
@@ -474,13 +526,16 @@ port
 ![image](https://user-images.githubusercontent.com/76677130/139528684-cebf093f-0d3c-44b0-970a-7a8b4e26d0ba.png)
 ls
 ![image](https://user-images.githubusercontent.com/76677130/139529080-ed714e4c-047f-4e83-bb75-dcb9fff79f6b.png)
-**Hasil Testing**
+
+**Testing**
+* Buka **Longuetown**
+* Ketik command `lynx 10.1.2.4:15000`
 ![image](https://user-images.githubusercontent.com/76677130/139529052-1a58ec6e-56ac-4e91-a8ff-542b60b262d9.png)
 
 
 
 ## Soal 15
-Pada soal ini diminta untuk .
+Pada soal ini diminta untuk memberikan autentifikasi dengan username `luffy` dan password `onepiece` pada webserver **www.general.mecha.franky.a04.com**.
 
 **Penjelasan**
 1. Buka **Skypie**
@@ -492,15 +547,21 @@ uabh
 ![image](https://user-images.githubusercontent.com/76677130/139529281-3b298efc-d55e-4259-ac99-ef1d99064592.png)
 .htaccess
 ![image](https://user-images.githubusercontent.com/76677130/139529475-915510b3-4db1-4c9d-85f7-e066eee7a393.png)
-**Hasil Testing**
+
+**Testing**
+* Buka **Longuetown**
+* Ketik command `lynx 10.1.2.4:15500`
+* Masukkan username `luffy`
 ![15t1](https://user-images.githubusercontent.com/76677130/139529413-f0f256a3-5b1c-42c4-bf7a-699da4d3913f.PNG)
+* Masukkan password `one piece`
 ![15t2](https://user-images.githubusercontent.com/76677130/139529418-6621192a-2a15-44d8-816b-272662d7ea86.PNG)
+* Tampil halaman web
 ![15t3](https://user-images.githubusercontent.com/76677130/139529419-6d985ab2-7638-4983-8beb-990381da1e79.PNG)
 
 
 
 ## Soal 16
-Pada soal ini diminta untuk .
+Pada soal ini diminta untuk mengarahkan IP Skypie (**10.1.2.4**) ke **www.franky.a04.com**.
 
 **Penjelasan**
 1. Buka **Skypie**
@@ -510,13 +571,16 @@ Pada soal ini diminta untuk .
 ![image](https://user-images.githubusercontent.com/76677130/139529941-591385a1-5956-4c8f-b3fa-fe07fe86e5de.png)
 ubah
 ![image](https://user-images.githubusercontent.com/76677130/139529656-116540d4-6655-4d16-b22a-219c557e9b9d.png)
-**Hasil Testing**
+
+**Testing**
+* Buka **Longuetown**
+* Ketik command `lynx 10.1.2.4`
 ![16t](https://user-images.githubusercontent.com/76677130/139529951-4d39d3c8-b191-4887-9103-fe180dd547c1.PNG)
 
 
 
 ## Soal 17
-Pada soal ini diminta untuk .
+Pada soal ini diminta untuk mengarahkan request gambar yang memiliki substring `franky`ke `franky.png` pada webserver **www.super.franky.a04.com**.
 
 **Penjelasan**
 1. Buka **Skypie**
@@ -526,7 +590,10 @@ Pada soal ini diminta untuk .
 ![17a](https://user-images.githubusercontent.com/76677130/139530625-52df9680-112e-4a63-bb64-eb7270d04405.PNG)
 ubah
 ![17b](https://user-images.githubusercontent.com/76677130/139530636-6e51be58-7fa6-47ce-bc21-5a2f1969ebc5.PNG)
-**Hasil Testing**
+
+**Testing**
+* Buka **Longuetown**
+* Ketik command `lynx www.super.franky.a04.com/afranky12.png` (dilakukan sebelum nomor 11)
 ![image](https://user-images.githubusercontent.com/76677130/139530612-82ad6716-e7f6-4edd-b12a-b49ed61a1381.png)
 
 
