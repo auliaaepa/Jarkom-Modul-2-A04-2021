@@ -749,10 +749,34 @@ uabh
 Pada soal ini diminta untuk mengarahkan IP Skypie (**10.1.2.4**) ke **www.franky.a04.com**.
 
 **Penjelasan**
-1. Buka **Skypie**
-2. a
-3. s
-.htaccess
+1. Buat file .htaccess pada /var/www/html
+```
+RewriteEngine On
+RewriteBase /
+RewriteCond %{HTTP_HOST} ^10\.1\.2\.4$
+RewriteRule ^(.*)$ http://www.franky.a04.com [L,R=301]
+```
+2. Ubah /etc/apache2/sites-available/000-default.conf
+```
+<VirtualHost *:80>
+        ServerAdmin webmaster@localhost
+        DocumentRoot /var/www/html
+
+        <Directory /var/www/html>
+                Options +FollowSymLinks -Multiviews
+                AllowOverride All
+        </Directory>
+
+        ErrorLog ${APACHE_LOG_DIR}/error.log
+        CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>
+```
+3. Restart apache
+```
+service apache2 restart
+```
+4. Buka **Skypie**
+5. .htaccess
 ![image](https://user-images.githubusercontent.com/76677130/139529941-591385a1-5956-4c8f-b3fa-fe07fe86e5de.png)
 ubah
 ![image](https://user-images.githubusercontent.com/76677130/139529656-116540d4-6655-4d16-b22a-219c557e9b9d.png)
