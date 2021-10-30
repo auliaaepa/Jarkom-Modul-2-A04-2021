@@ -639,10 +639,73 @@ ubah
 Pada soal ini diminta untuk melakukan konfigurasi pada webserver **www.general.mecha.franky.a04.com** dengan port `15000` dan `15500` serta DocumentRoot terletak pada `/var/www/general.mecha.franky.a04.com`.
 
 **Penjelasan**
-1. Buka **Skypie**
-2. a
-3. s
-ubah
+1. copy /etc/apache2/sites-available/000-default.conf
+```cp /etc/apache2/sites-available/000-default.conf 
+/etc/apache2/sites-available/general.mecha.franky.a04.com.conf
+```
+2. Ubah /etc/apache2/sites-available/general.mecha.franky.a04.com.conf
+```
+echo '<VirtualHost *:15000 *:15500>
+        ServerName general.mecha.franky.a04.com
+        ServerAlias www.general.mecha.franky.a04.com
+        ServerAdmin webmaster@localhost
+        DocumentRoot /var/www/general.mecha.franky.a04.com
+
+        ErrorLog ${APACHE_LOG_DIR}/error.log
+        CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>
+' > /etc/apache2/sites-available/general.mecha.franky.a04.com.conf
+```
+3. Ubah /etc/apache2/ports.conf
+```
+echo '# If you just change the port or add more ports here, you will likely also
+# have to change the VirtualHost statement in
+# /etc/apache2/sites-enabled/000-default.conf
+
+Listen 80
+Listen 15000
+Listen 15500
+
+<IfModule ssl_module>
+        Listen 443
+</IfModule>
+
+<IfModule mod_gnutls.c>
+        Listen 443
+</IfModule>
+```
+4. vim: syntax=apache ts=4 sw=4 sts=4 sr noet
+```
+' > /etc/apache2/ports.conf
+```
+5. Buat folder general.mecha.franky.a04.com di dalam /var/www
+```
+mkdir /var/www/general.mecha.franky.a04.com
+```
+6. Download file di website
+```
+wget 
+https://raw.githubusercontent.com/FeinardSlim/Praktikum-Modul-2-Jarkom/main/general.mecha.franky.zip
+```
+7. Unzip file website
+```
+unzip general.mecha.franky.zip
+```
+8. Pindahkan semua file website ke /var/www/general.mecha.franky.a04.com
+```
+mv general.mecha.franky/* /var/www/general.mecha.franky.a04.com
+```
+9. Aktifkan konfigurasi website
+```
+a2ensite general.mecha.franky.a04.com.conf
+```
+10. Restart apache
+```
+service apache2 restart
+```
+11. Buka **Skypie**
+12. a
+13. ubah
 ![image](https://user-images.githubusercontent.com/76677130/139528985-a2e93f97-be16-48cc-be42-190449ec2920.png)
 port
 ![image](https://user-images.githubusercontent.com/76677130/139528684-cebf093f-0d3c-44b0-970a-7a8b4e26d0ba.png)
