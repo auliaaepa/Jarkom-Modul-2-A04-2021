@@ -498,10 +498,51 @@ ubah
 Pada soal ini diminta untuk melakukan konfigurasi pada webserver **www.super.franky.a04.com** dengan DocumentRoot pada `/var/www/super.franky.a04.com`.
 
 **Penjelasan**
-1. Buka **Skypie**
-2. a
-3. s
-ubah
+1. Copy /etc/apache2/sites-available/000-default.conf
+```
+cp /etc/apache2/sites-available/000-default.conf 
+/etc/apache2/sites-available/super.franky.a04.com.conf
+```
+2. Ubah /etc/apache2/sites-available/super.franky.a04.com.conf
+```
+echo '<VirtualHost *:80>
+        ServerName super.franky.a04.com
+        ServerAlias www.super.franky.a04.com
+        ServerAdmin webmaster@localhost
+        DocumentRoot /var/www/super.franky.a04.com
+
+        ErrorLog ${APACHE_LOG_DIR}/error.log
+        CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>
+' > /etc/apache2/sites-available/super.franky.a04.com.conf
+```
+3. Buat folder super.franky.a04.com di dalam /var/www
+```
+mkdir /var/www/super.franky.a04.com
+```
+4. Download file di website
+```
+wget 
+https://raw.githubusercontent.com/FeinardSlim/Praktikum-Modul-2-Jarkom/main/super.franky.zip
+```
+5. Unzip file dari website tersebut
+```
+unzip super.franky.zip
+```
+6. Pindahkan isi semua file website ke folder yang telah dibuat
+```
+mv super.franky/* /var/www/super.franky.a04.com
+```
+7. Aktifkan konfigurasi website
+```
+a2ensite super.franky.a04.com.conf
+```
+8. Restart apache
+```
+service apache2 restart
+```
+9. Buka **Skypie**
+10. ubah
 ![image](https://user-images.githubusercontent.com/76677130/139526809-7d85cc6f-95b5-4d53-8368-ddc110682d33.png)
 ls
 ![image](https://user-images.githubusercontent.com/76677130/139526981-e7639f95-014c-4fbd-b0ac-12ec7a8e6bf7.png)
