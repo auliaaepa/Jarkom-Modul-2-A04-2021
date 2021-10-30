@@ -458,9 +458,7 @@ service apache2 restart
     service bind9 restart
     ```
 12. Buka **Skypie**
-5. a
-6. a
-nano
+6. nano
 ![image](https://user-images.githubusercontent.com/76677130/139525906-b27e018b-c5ba-4181-9c15-068620ff9b99.png)
 ls
 ![image](https://user-images.githubusercontent.com/76677130/139525409-5cfb9e39-8ade-4c4f-b18b-0ad442fe0d1c.png)
