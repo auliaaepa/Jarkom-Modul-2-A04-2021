@@ -364,3 +364,174 @@ Pada soal ini diminta untuk membuat subdomain **general.mecha.franky.a04.com** d
 ![image](https://user-images.githubusercontent.com/76677130/139222372-8abcfcb3-e09d-481e-8229-f980503d9a92.png)
 
 
+
+## Soal 8
+Pada soal ini diminta untuk .
+
+**Penjelasan**
+1. Pastikan semua Record A dan PTR pada **/etc/bind/kaizoku/franky.a04.com**, **/etc/bind/kaizoku/2.1.10.in-addr.arpa**, dan **/etc/bind/sunnygo/mecha.franky.a04.com** mengarah ke IP Skypie (10.1.2.4)
+![image](https://user-images.githubusercontent.com/76677130/139524799-12a45015-4fbd-4140-8ff0-567a34af419e.png)
+2. Restart service bind9
+    ```
+    service bind9 restart
+    ```
+4. Buka **Skypie**
+5. a
+6. a
+nano
+![image](https://user-images.githubusercontent.com/76677130/139525906-b27e018b-c5ba-4181-9c15-068620ff9b99.png)
+ls
+![image](https://user-images.githubusercontent.com/76677130/139525409-5cfb9e39-8ade-4c4f-b18b-0ad442fe0d1c.png)
+
+**Hasil Testing**
+![8t](https://user-images.githubusercontent.com/76677130/139525954-3578867e-b1a4-44db-870a-299c429e2055.PNG)
+
+
+
+## Soal 9
+Pada soal ini diminta untuk .
+
+**Penjelasan**
+1. Buka **Skypie**
+2. a
+3. s
+.ht
+![image](https://user-images.githubusercontent.com/76677130/139526346-4b38feb1-33c6-49b7-bc50-19b46ebccede.png)
+ubah
+![9b](https://user-images.githubusercontent.com/76677130/139526512-2b156b78-9d93-43f3-bc49-c715d7370f05.PNG)
+**Hasil Testing**
+![image](https://user-images.githubusercontent.com/76677130/139526509-46ed34ec-10fb-415b-80e5-99adf78e6635.png)
+
+
+
+## Soal 10
+Pada soal ini diminta untuk .
+
+**Penjelasan**
+1. Buka **Skypie**
+2. a
+3. s
+ubah
+![image](https://user-images.githubusercontent.com/76677130/139526809-7d85cc6f-95b5-4d53-8368-ddc110682d33.png)
+ls
+![image](https://user-images.githubusercontent.com/76677130/139526981-e7639f95-014c-4fbd-b0ac-12ec7a8e6bf7.png)
+**Hasil Testing**
+![image](https://user-images.githubusercontent.com/76677130/139527130-13071e88-f319-4bec-80e5-ac407dbbaa20.png)
+
+
+
+## Soal 11
+Pada soal ini diminta untuk .
+
+**Penjelasan**
+1. Buka **Skypie**
+2. a
+3. s
+ubah
+![image](https://user-images.githubusercontent.com/76677130/139527385-9393ac8d-536e-4324-912a-1283e2b0f712.png)
+**Hasil Testing**
+![11b](https://user-images.githubusercontent.com/76677130/139527545-dab3dca5-2058-41d0-a8ad-3911ff9d70ab.PNG)
+![11c](https://user-images.githubusercontent.com/76677130/139527546-f1250864-d076-4bb8-9452-269131165e1e.PNG)
+
+
+
+## Soal 12
+Pada soal ini diminta untuk .
+
+**Penjelasan**
+1. Buka **Skypie**
+2. a
+3. s
+ubah
+![image](https://user-images.githubusercontent.com/76677130/139527647-12754e18-b840-42ee-aa6f-929b367bb3cd.png)
+
+
+
+## Soal 13
+Pada soal ini diminta untuk .
+
+**Penjelasan**
+1. Buka **Skypie**
+2. a
+3. s
+ubah
+![image](https://user-images.githubusercontent.com/76677130/139527965-0ac9684d-91d6-41c1-951e-951c36db3096.png)
+**Hasil Testing**
+![image](https://user-images.githubusercontent.com/76677130/139528291-881d8c8a-e181-4212-8e17-ad4d8b5a0e55.png)
+
+
+
+## Soal 14
+Pada soal ini diminta untuk .
+
+**Penjelasan**
+1. Buka **Skypie**
+2. a
+3. s
+ubah
+![image](https://user-images.githubusercontent.com/76677130/139528985-a2e93f97-be16-48cc-be42-190449ec2920.png)
+port
+![image](https://user-images.githubusercontent.com/76677130/139528684-cebf093f-0d3c-44b0-970a-7a8b4e26d0ba.png)
+ls
+![image](https://user-images.githubusercontent.com/76677130/139529080-ed714e4c-047f-4e83-bb75-dcb9fff79f6b.png)
+**Hasil Testing**
+![image](https://user-images.githubusercontent.com/76677130/139529052-1a58ec6e-56ac-4e91-a8ff-542b60b262d9.png)
+
+
+
+## Soal 15
+Pada soal ini diminta untuk .
+
+**Penjelasan**
+1. Buka **Skypie**
+2. a
+3. s
+htpass
+![image](https://user-images.githubusercontent.com/76677130/139529233-81523d73-24ea-42f0-afd8-0ca597f33590.png)
+uabh
+![image](https://user-images.githubusercontent.com/76677130/139529281-3b298efc-d55e-4259-ac99-ef1d99064592.png)
+.htaccess
+![image](https://user-images.githubusercontent.com/76677130/139529475-915510b3-4db1-4c9d-85f7-e066eee7a393.png)
+**Hasil Testing**
+![15t1](https://user-images.githubusercontent.com/76677130/139529413-f0f256a3-5b1c-42c4-bf7a-699da4d3913f.PNG)
+![15t2](https://user-images.githubusercontent.com/76677130/139529418-6621192a-2a15-44d8-816b-272662d7ea86.PNG)
+![15t3](https://user-images.githubusercontent.com/76677130/139529419-6d985ab2-7638-4983-8beb-990381da1e79.PNG)
+
+
+
+## Soal 16
+Pada soal ini diminta untuk .
+
+**Penjelasan**
+1. Buka **Skypie**
+2. a
+3. s
+.htaccess
+![image](https://user-images.githubusercontent.com/76677130/139529941-591385a1-5956-4c8f-b3fa-fe07fe86e5de.png)
+ubah
+![image](https://user-images.githubusercontent.com/76677130/139529656-116540d4-6655-4d16-b22a-219c557e9b9d.png)
+**Hasil Testing**
+![16t](https://user-images.githubusercontent.com/76677130/139529951-4d39d3c8-b191-4887-9103-fe180dd547c1.PNG)
+
+
+
+## Soal 17
+Pada soal ini diminta untuk .
+
+**Penjelasan**
+1. Buka **Skypie**
+2. a
+3. s
+.htaccess
+![17a](https://user-images.githubusercontent.com/76677130/139530625-52df9680-112e-4a63-bb64-eb7270d04405.PNG)
+ubah
+![17b](https://user-images.githubusercontent.com/76677130/139530636-6e51be58-7fa6-47ce-bc21-5a2f1969ebc5.PNG)
+**Hasil Testing**
+![image](https://user-images.githubusercontent.com/76677130/139530612-82ad6716-e7f6-4edd-b12a-b49ed61a1381.png)
+
+
+
+## Kendala
+Adapun kendala yang dialami selama pengerjaan soal praktikum modul ini adalah sebagai berikut.
+* lynx tidak dapat menampilkan gambar
+* terkadang gns3 tidak terhubung dengan jaringan internet (tidak dapat download dll)
