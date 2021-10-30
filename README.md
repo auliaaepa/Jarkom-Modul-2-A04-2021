@@ -479,9 +479,45 @@ ls
 Pada soal ini diminta untuk mengubah url **www.franky.a04.com/index.php/home** menjadi **www.franky.a04.com/home**.
 
 **Penjelasan**
-1. Buka **Skypie**
-2. a
-3. s
+1. aktifkan module rewrite
+```
+a2enmod rewrite
+```
+
+2. restart apache 
+```
+service apache2 restart
+```
+
+3. buat file .htaccess pada folder /var/www/franky.a04.com
+```
+echo  'RewriteEngine On
+RewriteRule ^home$ index.php/home
+' > /var/www/franky.a04.com/.htaccess
+```
+
+4. ubah /etc/apache2/sites-available/franky.a04.com.conf
+``` 
+ echo '<VirtualHost *:80>
+        ServerName franky.a04.com
+        ServerAlias www.franky.a04.com
+        ServerAdmin webmaster@localhost
+        DocumentRoot /var/www/franky.a04.com
+
+        <Directory /var/www/franky.a04.com>
+                Options +FollowSymLinks -Multiviews
+                AllowOverride All
+        </Directory>
+
+        ErrorLog ${APACHE_LOG_DIR}/error.log
+        CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>
+' > /etc/apache2/sites-available/franky.a04.com.conf
+```
+5. restart apache
+```
+service apache2 restart
+```
 .ht
 ![image](https://user-images.githubusercontent.com/76677130/139526346-4b38feb1-33c6-49b7-bc50-19b46ebccede.png)
 ubah
