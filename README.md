@@ -600,5 +600,5 @@ ubah
 
 ## Kendala
 Adapun kendala yang dialami selama pengerjaan soal praktikum modul ini adalah sebagai berikut.
-* lynx tidak dapat menampilkan gambar
+* lynx tidak dapat menampilkan gambarr
 * terkadang gns3 tidak terhubung dengan jaringan internet (tidak dapat download dll)
