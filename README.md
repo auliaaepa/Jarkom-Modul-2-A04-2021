@@ -479,38 +479,10 @@ ls
 Pada soal ini diminta untuk mengubah url **www.franky.a04.com/index.php/home** menjadi **www.franky.a04.com/home**.
 
 **Penjelasan**
-# nomor 9 - module rewrite
-## aktifkan module rewrite
-a2enmod rewrite
-
-## restart apache 
-service apache2 restart
-
-## buat file .htaccess pada folder /var/www/franky.a04.com
-echo  'RewriteEngine On
-RewriteRule ^home$ index.php/home
-' > /var/www/franky.a04.com/.htaccess
-
-## ubah /etc/apache2/sites-available/franky.a04.com.conf
- echo '<VirtualHost *:80>
-        ServerName franky.a04.com
-        ServerAlias www.franky.a04.com
-        ServerAdmin webmaster@localhost
-        DocumentRoot /var/www/franky.a04.com
-
-        <Directory /var/www/franky.a04.com>
-                Options +FollowSymLinks -Multiviews
-                AllowOverride All
-        </Directory>
-
-        ErrorLog ${APACHE_LOG_DIR}/error.log
-        CustomLog ${APACHE_LOG_DIR}/access.log combined
-</VirtualHost>
-' > /etc/apache2/sites-available/franky.a04.com.conf
-
-## restart apache
-service apache2 restart
-
+1. Buka **Skypie**
+2. a
+3. s
+.ht
 ![image](https://user-images.githubusercontent.com/76677130/139526346-4b38feb1-33c6-49b7-bc50-19b46ebccede.png)
 ubah
 ![9b](https://user-images.githubusercontent.com/76677130/139526512-2b156b78-9d93-43f3-bc49-c715d7370f05.PNG)
@@ -570,7 +542,7 @@ a2ensite super.franky.a04.com.conf
 service apache2 restart
 ```
 9. Buka **Skypie**
-10. ubah
+10. Ubah
 ![image](https://user-images.githubusercontent.com/76677130/139526809-7d85cc6f-95b5-4d53-8368-ddc110682d33.png)
 ls
 ![image](https://user-images.githubusercontent.com/76677130/139526981-e7639f95-014c-4fbd-b0ac-12ec7a8e6bf7.png)
@@ -605,10 +577,43 @@ ubah
 Pada soal ini diminta untuk mengganti error kode pada webserver **www.super.franky.a04.com** dengan file `404.html` yang berada dalam folder `error`.
 
 **Penjelasan**
-1. Buka **Skypie**
-2. a
-3. s
-ubah
+1. Ubah /etc/apache2/sites-available/super.franky.a04.com.conf
+```
+echo '<VirtualHost *:80>
+        ServerName super.franky.a04.com
+        ServerAlias www.super.franky.a04.com
+        ServerAdmin webmaster@localhost
+        DocumentRoot /var/www/super.franky.a04.com
+
+        <Directory /var/www/super.franky.a04.com/public>
+                Options +Indexes
+        </Directory>
+
+        <Directory /var/www/super.franky.a04.com/public/css>
+                Options -Indexes
+        </Directory>
+
+        <Directory /var/www/super.franky.a04.com/public/images>
+                Options -Indexes
+        </Directory>
+
+        <Directory /var/www/super.franky.a04.com/public/js>
+                Options -Indexes
+        </Directory>
+
+        ErrorDocument 404 /error/404.html
+
+        ErrorLog ${APACHE_LOG_DIR}/error.log
+        CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>
+' > /etc/apache2/sites-available/super.franky.a04.com.conf
+```
+2. Restart apache
+```
+service apache2 restart
+```
+3. Buka **Skypie**
+4. Ubah
 ![image](https://user-images.githubusercontent.com/76677130/139527647-12754e18-b840-42ee-aa6f-929b367bb3cd.png)
 
 
