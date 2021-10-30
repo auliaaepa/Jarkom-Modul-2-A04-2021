@@ -401,21 +401,27 @@ Pada soal ini diminta untuk membuat subdomain **general.mecha.franky.a04.com** d
 Pada soal ini diminta untuk melakukan konfigurasi pada webserver **www.franky.a04.com** dengan DocumentRoot pada `/var/www/franky.a04.com`.
 
 **Penjelasan**
-1. Install apache2 beserta librarynya dan php
-```
-apt-get update
-apt-get install apache2 -y
-apt-get install libapache2-mod-php7.0 -y
-apt-get install php -y
-```
-2. Copy /etc/apache2/sites-available/000-default.conf
-```
-cp /etc/apache2/sites-available/000-default.conf 
-/etc/apache2/sites-available/franky.a04.com.conf
-```
-3. Ubah /etc/apache2/sites-available/franky.a04.com.conf
-```
-echo ‘<VirtualHost *:80>
+1. Pastikan semua Record A dan PTR pada **/etc/bind/kaizoku/franky.a04.com**, **/etc/bind/kaizoku/2.1.10.in-addr.arpa**, dan **/etc/bind/sunnygo/mecha.franky.a04.com** mengarah ke IP Skypie (10.1.2.4)
+    ![image](https://user-images.githubusercontent.com/76677130/139524799-12a45015-4fbd-4140-8ff0-567a34af419e.png)
+2. Restart service bind9
+    ```
+    service bind9 restart
+    ```
+3. Buka **Skypie**
+4. Install apache2 beserta librarynya dan php
+    ```
+    apt-get update
+    apt-get install apache2 -y
+    apt-get install libapache2-mod-php7.0 -y
+    apt-get install php -y
+    ```
+5. Copy **/etc/apache2/sites-available/000-default.conf** ke **/etc/apache2/sites-available/franky.a04.com.conf**
+    ```
+    cp /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/franky.a04.com.conf
+    ```
+6. Ubah **/etc/apache2/sites-available/franky.a04.com.conf**
+    ```
+    <VirtualHost *:80>
         ServerName franky.a04.com
         ServerAlias www.franky.a04.com
         ServerAdmin webmaster@localhost
@@ -423,45 +429,34 @@ echo ‘<VirtualHost *:80>
 
         ErrorLog ${APACHE_LOG_DIR}/error.log
         CustomLog ${APACHE_LOG_DIR}/access.log combined
-</VirtualHost>
-‘ > /etc/apache2/sites-available/franky.a04.com.conf
-```
-4. Buat folder franky.a04.com di dalam /var/www
-```
-mkdir /var/www/franky.a04.com
-```
-5. Download file website
-```
-wget 
-https://raw.githubusercontent.com/FeinardSlim/Praktikum-Modul-2-Jarkom/main/franky.zip
-```
-6. Unzip file dari website
-```
-unzip franky.zip 
-```
-7. Pindahkan isi semua file website ke folder yang telah dibuat
-```
-mv franky/* /var/www/franky.a04.com
-```
-8. Aktifkan konfigurasi website
-```
-a2ensite franky.a04.com.conf
-```
-9. Restart apache
-```
-service apache2 restart
-```
-10. Pastikan semua Record A dan PTR pada **/etc/bind/kaizoku/franky.a04.com**, **/etc/bind/kaizoku/2.1.10.in-addr.arpa**, dan **/etc/bind/sunnygo/mecha.franky.a04.com** mengarah ke IP Skypie (10.1.2.4)
-![image](https://user-images.githubusercontent.com/76677130/139524799-12a45015-4fbd-4140-8ff0-567a34af419e.png)
-11. Restart service bind9
+    </VirtualHost>
     ```
-    service bind9 restart
+    ![image](https://user-images.githubusercontent.com/76677130/139525906-b27e018b-c5ba-4181-9c15-068620ff9b99.png)
+7. Buat folder **franky.a04.com** di dalam **/var/www**
     ```
-12. Buka **Skypie**
-6. nano
-![image](https://user-images.githubusercontent.com/76677130/139525906-b27e018b-c5ba-4181-9c15-068620ff9b99.png)
-ls
-![image](https://user-images.githubusercontent.com/76677130/139525409-5cfb9e39-8ade-4c4f-b18b-0ad442fe0d1c.png)
+    mkdir /var/www/franky.a04.com
+    ```
+8. Unduh file website
+    ```
+    wget https://raw.githubusercontent.com/FeinardSlim/Praktikum-Modul-2-Jarkom/main/franky.zip
+    ```
+9. Unzip file dari website
+    ```
+    unzip franky.zip 
+    ```
+10. Pindahkan isi semua file website ke folder yang telah dibuat
+    ```
+    mv franky/* /var/www/franky.a04.com
+    ```
+    ![image](https://user-images.githubusercontent.com/76677130/139525409-5cfb9e39-8ade-4c4f-b18b-0ad442fe0d1c.png)
+11. Aktifkan konfigurasi website
+    ```
+    a2ensite franky.a04.com.conf
+    ```
+12. Restart apache
+    ```
+    service apache2 restart
+    ```
 
 **Testing**
 * Buka **Longuetown**
@@ -479,49 +474,43 @@ ls
 Pada soal ini diminta untuk mengubah url **www.franky.a04.com/index.php/home** menjadi **www.franky.a04.com/home**.
 
 **Penjelasan**
-1. aktifkan module rewrite
-```
-a2enmod rewrite
-```
-![image](https://user-images.githubusercontent.com/76677130/139526346-4b38feb1-33c6-49b7-bc50-19b46ebccede.png)
-2. restart apache 
-```
-service apache2 restart
-```
-ubah
-![9b](https://user-images.githubusercontent.com/76677130/139526512-2b156b78-9d93-43f3-bc49-c715d7370f05.PNG)
-3. buat file .htaccess pada folder /var/www/franky.a04.com
-```
-echo  'RewriteEngine On
-RewriteRule ^home$ index.php/home
-' > /var/www/franky.a04.com/.htaccess
-```
-
-4. ubah /etc/apache2/sites-available/franky.a04.com.conf
-``` 
- echo '<VirtualHost *:80>
+1. Buka **Skypie**
+2. Aktifkan module rewrite
+    ```
+    a2enmod rewrite
+    ```
+2. Restart apache 
+    ```
+    service apache2 restart
+    ```
+3. Buat file **.htaccess** pada folder **/var/www/franky.a04.com**
+    ```
+    RewriteEngine On
+    RewriteRule ^home$ index.php/home
+    ```
+    ![image](https://user-images.githubusercontent.com/76677130/139526346-4b38feb1-33c6-49b7-bc50-19b46ebccede.png)
+4. Ubah **/etc/apache2/sites-available/franky.a04.com.conf**
+    ``` 
+     <VirtualHost *:80>
         ServerName franky.a04.com
         ServerAlias www.franky.a04.com
         ServerAdmin webmaster@localhost
         DocumentRoot /var/www/franky.a04.com
 
         <Directory /var/www/franky.a04.com>
-                Options +FollowSymLinks -Multiviews
-                AllowOverride All
+            Options +FollowSymLinks -Multiviews
+            AllowOverride All
         </Directory>
 
         ErrorLog ${APACHE_LOG_DIR}/error.log
         CustomLog ${APACHE_LOG_DIR}/access.log combined
-</VirtualHost>
-' > /etc/apache2/sites-available/franky.a04.com.conf
-```
-5. restart apache
-```
-service apache2 restart
-```
-
-
-
+    </VirtualHost>
+    ```
+    ![9b](https://user-images.githubusercontent.com/76677130/139526512-2b156b78-9d93-43f3-bc49-c715d7370f05.PNG)
+5. Restart apache
+    ```
+    service apache2 restart
+    ```
 
 **Testing**
 * Buka **Longuetown**
@@ -534,14 +523,14 @@ service apache2 restart
 Pada soal ini diminta untuk melakukan konfigurasi pada webserver **www.super.franky.a04.com** dengan DocumentRoot pada `/var/www/super.franky.a04.com`.
 
 **Penjelasan**
-1. Copy /etc/apache2/sites-available/000-default.conf
-```
-cp /etc/apache2/sites-available/000-default.conf 
-/etc/apache2/sites-available/super.franky.a04.com.conf
-```
-2. Ubah /etc/apache2/sites-available/super.franky.a04.com.conf
-```
-echo '<VirtualHost *:80>
+1. Buka **Skypie**
+2. Copy **/etc/apache2/sites-available/000-default.conf** ke **/etc/apache2/sites-available/super.franky.a04.com.conf**
+    ```
+    cp /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/super.franky.a04.com.conf
+    ```
+3. Ubah **/etc/apache2/sites-available/super.franky.a04.com.conf** 
+    ```
+    <VirtualHost *:80>
         ServerName super.franky.a04.com
         ServerAlias www.super.franky.a04.com
         ServerAdmin webmaster@localhost
@@ -549,39 +538,34 @@ echo '<VirtualHost *:80>
 
         ErrorLog ${APACHE_LOG_DIR}/error.log
         CustomLog ${APACHE_LOG_DIR}/access.log combined
-</VirtualHost>
-' > /etc/apache2/sites-available/super.franky.a04.com.conf
-```
-3. Buat folder super.franky.a04.com di dalam /var/www
-```
-mkdir /var/www/super.franky.a04.com
-```
-4. Download file di website
-```
-wget 
-https://raw.githubusercontent.com/FeinardSlim/Praktikum-Modul-2-Jarkom/main/super.franky.zip
-```
-5. Unzip file dari website tersebut
-```
-unzip super.franky.zip
-```
-6. Pindahkan isi semua file website ke folder yang telah dibuat
-```
-mv super.franky/* /var/www/super.franky.a04.com
-```
-7. Aktifkan konfigurasi website
-```
-a2ensite super.franky.a04.com.conf
-```
-8. Restart apache
-```
-service apache2 restart
-```
-9. Buka **Skypie**
-10. Ubah
-![image](https://user-images.githubusercontent.com/76677130/139526809-7d85cc6f-95b5-4d53-8368-ddc110682d33.png)
-ls
-![image](https://user-images.githubusercontent.com/76677130/139526981-e7639f95-014c-4fbd-b0ac-12ec7a8e6bf7.png)
+    </VirtualHost>
+    ```
+    ![image](https://user-images.githubusercontent.com/76677130/139526809-7d85cc6f-95b5-4d53-8368-ddc110682d33.png)
+4. Buat folder **super.franky.a04.com** di dalam **/var/www**
+    ```
+    mkdir /var/www/super.franky.a04.com
+    ```
+5. Unduh file website
+    ```
+    wget https://raw.githubusercontent.com/FeinardSlim/Praktikum-Modul-2-Jarkom/main/super.franky.zip
+    ```
+6. Unzip file website
+    ```
+    unzip super.franky.zip
+    ```
+7. Pindahkan isi semua file website ke folder yang telah dibuat
+    ```
+    mv super.franky/* /var/www/super.franky.a04.com
+    ```
+    ![image](https://user-images.githubusercontent.com/76677130/139526981-e7639f95-014c-4fbd-b0ac-12ec7a8e6bf7.png)
+8. Aktifkan konfigurasi website
+    ```
+    a2ensite super.franky.a04.com.conf
+    ```
+9. Restart apache
+    ```
+    service apache2 restart
+    ```
 
 **Testing**
 * Buka **Longuetown**
@@ -594,42 +578,40 @@ ls
 Pada soal ini diminta untuk hanya membuat directory listing pada folder `public` di webserver **www.super.franky.a04.com**.
 
 **Penjelasan**
-1. ubah /etc/apache2/sites-available/super.franky.a04.com.conf
-```
-echo '<VirtualHost *:80>
+1. Buka **Skypie**
+2. Ubah **/etc/apache2/sites-available/super.franky.a04.com.conf**
+    ```
+    <VirtualHost *:80>
         ServerName super.franky.a04.com
         ServerAlias www.super.franky.a04.com
         ServerAdmin webmaster@localhost
         DocumentRoot /var/www/super.franky.a04.com
 
         <Directory /var/www/super.franky.a04.com/public>
-                Options +Indexes
+            Options +Indexes
         </Directory>
 
         <Directory /var/www/super.franky.a04.com/public/css>
-                Options -Indexes
+            Options -Indexes
         </Directory>
 
         <Directory /var/www/super.franky.a04.com/public/images>
-                Options -Indexes
+            Options -Indexes
         </Directory>
 
         <Directory /var/www/super.franky.a04.com/public/js>
-                Options -Indexes
+            Options -Indexes
         </Directory>
 
         ErrorLog ${APACHE_LOG_DIR}/error.log
         CustomLog ${APACHE_LOG_DIR}/access.log combined
-</VirtualHost>
-' > /etc/apache2/sites-available/super.franky.a04.com.conf
-```
-ubah
-![image](https://user-images.githubusercontent.com/76677130/139527385-9393ac8d-536e-4324-912a-1283e2b0f712.png)
-
-2. restart apache
-```service apache2 restart```
-
-
+    </VirtualHost>
+    ```
+    ![image](https://user-images.githubusercontent.com/76677130/139527385-9393ac8d-536e-4324-912a-1283e2b0f712.png)
+3. Restart apache
+    ```
+    service apache2 restart
+    ```
 
 **Testing**
 * Buka **Longuetown**
@@ -644,44 +626,42 @@ ubah
 Pada soal ini diminta untuk mengganti error kode pada webserver **www.super.franky.a04.com** dengan file `404.html` yang berada dalam folder `error`.
 
 **Penjelasan**
-1. Ubah /etc/apache2/sites-available/super.franky.a04.com.conf
-```
-echo '<VirtualHost *:80>
+1. Buka **Skypie**
+2. Ubah **/etc/apache2/sites-available/super.franky.a04.com.conf**
+    ```
+    <VirtualHost *:80>
         ServerName super.franky.a04.com
         ServerAlias www.super.franky.a04.com
         ServerAdmin webmaster@localhost
         DocumentRoot /var/www/super.franky.a04.com
 
         <Directory /var/www/super.franky.a04.com/public>
-                Options +Indexes
+            Options +Indexes
         </Directory>
 
         <Directory /var/www/super.franky.a04.com/public/css>
-                Options -Indexes
+            Options -Indexes
         </Directory>
 
         <Directory /var/www/super.franky.a04.com/public/images>
-                Options -Indexes
+            Options -Indexes
         </Directory>
 
         <Directory /var/www/super.franky.a04.com/public/js>
-                Options -Indexes
+            Options -Indexes
         </Directory>
 
         ErrorDocument 404 /error/404.html
 
         ErrorLog ${APACHE_LOG_DIR}/error.log
         CustomLog ${APACHE_LOG_DIR}/access.log combined
-</VirtualHost>
-' > /etc/apache2/sites-available/super.franky.a04.com.conf
-```
-2. Restart apache
-```
-service apache2 restart
-```
-3. Buka **Skypie**
-4. Ubah
-![image](https://user-images.githubusercontent.com/76677130/139527647-12754e18-b840-42ee-aa6f-929b367bb3cd.png)
+    </VirtualHost>
+    ```
+    ![image](https://user-images.githubusercontent.com/76677130/139527647-12754e18-b840-42ee-aa6f-929b367bb3cd.png)
+3. Restart apache
+    ```
+    service apache2 restart
+    ```
 
 
 
@@ -689,40 +669,44 @@ service apache2 restart
 Pada soal ini diminta untuk membuat konfigurasi vitual host yang dapat memberikan akses **www.super.franky.a04.com/js** kepada **www.super.franky.a04.com/public/js**.
 
 **Penjelasan**
-1. ubah /etc/apache2/sites-available/super.franky.a04.com.conf
-![image](https://user-images.githubusercontent.com/76677130/139527965-0ac9684d-91d6-41c1-951e-951c36db3096.png)
-```
-echo '<VirtualHost *:80>
+1. Buka **Skypie**
+2. Ubah **/etc/apache2/sites-available/super.franky.a04.com.conf**
+    ```
+    <VirtualHost *:80>
         ServerName super.franky.a04.com
         ServerAlias www.super.franky.a04.com
         ServerAdmin webmaster@localhost
         DocumentRoot /var/www/super.franky.a04.com
 
         <Directory /var/www/super.franky.a04.com/public>
-                Options +Indexes
+            Options +Indexes
         </Directory>
 
         <Directory /var/www/super.franky.a04.com/public/css>
-                Options -Indexes
+            Options -Indexes
         </Directory>
 
         <Directory /var/www/super.franky.a04.com/public/images>
-                Options -Indexes
+            Options -Indexes
         </Directory>
 
         <Directory /var/www/super.franky.a04.com/public/js>
-                Options -Indexes
+            Options -Indexes
         </Directory>
+    
+        ErrorDocument 404 /error/404.html
+
+        Alias "/js" "/var/www/super.franky.a04.com/public/js"
 
         ErrorLog ${APACHE_LOG_DIR}/error.log
         CustomLog ${APACHE_LOG_DIR}/access.log combined
-</VirtualHost>
-' > /etc/apache2/sites-available/super.franky.a04.com.conf
-```
-2. restart apache
-service apache2 restart
-
-
+    </VirtualHost>
+    ```
+    ![image](https://user-images.githubusercontent.com/76677130/139527965-0ac9684d-91d6-41c1-951e-951c36db3096.png)
+3. Restart apache
+    ```
+    service apache2 restart
+    ```
 
 **Testing**
 * Buka **Longuetown**
@@ -735,13 +719,14 @@ service apache2 restart
 Pada soal ini diminta untuk melakukan konfigurasi pada webserver **www.general.mecha.franky.a04.com** dengan port `15000` dan `15500` serta DocumentRoot terletak pada `/var/www/general.mecha.franky.a04.com`.
 
 **Penjelasan**
-1. copy /etc/apache2/sites-available/000-default.conf
-```cp /etc/apache2/sites-available/000-default.conf 
-/etc/apache2/sites-available/general.mecha.franky.a04.com.conf
-```
-2. Ubah /etc/apache2/sites-available/general.mecha.franky.a04.com.conf
-```
-echo '<VirtualHost *:15000 *:15500>
+1. Buka **Skypie**
+2. Copy **/etc/apache2/sites-available/000-default.conf** ke **/etc/apache2/sites-available/general.mecha.franky.a04.com.conf**
+    ```
+    cp /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/general.mecha.franky.a04.com.conf
+    ```
+3. Ubah **/etc/apache2/sites-available/general.mecha.franky.a04.com.conf**
+    ```
+    <VirtualHost *:15000 *:15500>
         ServerName general.mecha.franky.a04.com
         ServerAlias www.general.mecha.franky.a04.com
         ServerAdmin webmaster@localhost
@@ -749,64 +734,55 @@ echo '<VirtualHost *:15000 *:15500>
 
         ErrorLog ${APACHE_LOG_DIR}/error.log
         CustomLog ${APACHE_LOG_DIR}/access.log combined
-</VirtualHost>
-' > /etc/apache2/sites-available/general.mecha.franky.a04.com.conf
-```
-3. Ubah /etc/apache2/ports.conf
-```
-echo '# If you just change the port or add more ports here, you will likely also
-# have to change the VirtualHost statement in
-# /etc/apache2/sites-enabled/000-default.conf
+    </VirtualHost>
+    ```
+    ![image](https://user-images.githubusercontent.com/76677130/139528985-a2e93f97-be16-48cc-be42-190449ec2920.png)
+4. Ubah **/etc/apache2/ports.conf**
+    ```
+    # If you just change the port or add more ports here, you will likely also
+    # have to change the VirtualHost statement in
+    # /etc/apache2/sites-enabled/000-default.conf
 
-Listen 80
-Listen 15000
-Listen 15500
+    Listen 80
+    Listen 15000
+    Listen 15500
 
-<IfModule ssl_module>
-        Listen 443
-</IfModule>
+    <IfModule ssl_module>
+            Listen 443
+    </IfModule>
 
-<IfModule mod_gnutls.c>
-        Listen 443
-</IfModule>
-```
-4. vim: syntax=apache ts=4 sw=4 sts=4 sr noet
-```
-' > /etc/apache2/ports.conf
-```
-5. Buat folder general.mecha.franky.a04.com di dalam /var/www
-```
-mkdir /var/www/general.mecha.franky.a04.com
-```
-6. Download file di website
-```
-wget 
-https://raw.githubusercontent.com/FeinardSlim/Praktikum-Modul-2-Jarkom/main/general.mecha.franky.zip
-```
+    <IfModule mod_gnutls.c>
+            Listen 443
+    </IfModule>
+
+    # vim: syntax=apache ts=4 sw=4 sts=4 sr noet
+    ```
+    ![image](https://user-images.githubusercontent.com/76677130/139528684-cebf093f-0d3c-44b0-970a-7a8b4e26d0ba.png)
+5. Buat folder **general.mecha.franky.a04.com** di dalam **/var/www**
+    ```
+    mkdir /var/www/general.mecha.franky.a04.com
+    ```
+6. Unduh file website
+    ```
+    wget https://raw.githubusercontent.com/FeinardSlim/Praktikum-Modul-2-Jarkom/main/general.mecha.franky.zip
+    ```
 7. Unzip file website
-```
-unzip general.mecha.franky.zip
-```
-8. Pindahkan semua file website ke /var/www/general.mecha.franky.a04.com
-```
-mv general.mecha.franky/* /var/www/general.mecha.franky.a04.com
-```
+    ```
+    unzip general.mecha.franky.zip
+    ```
+8. Pindahkan semua file website ke **/var/www/general.mecha.franky.a04.com**
+    ```
+    mv general.mecha.franky/* /var/www/general.mecha.franky.a04.com
+    ```
+    ![image](https://user-images.githubusercontent.com/76677130/139529080-ed714e4c-047f-4e83-bb75-dcb9fff79f6b.png)
 9. Aktifkan konfigurasi website
-```
-a2ensite general.mecha.franky.a04.com.conf
-```
+    ```
+    a2ensite general.mecha.franky.a04.com.conf
+    ```
 10. Restart apache
-```
-service apache2 restart
-```
-11. Buka **Skypie**
-12. a
-13. ubah
-![image](https://user-images.githubusercontent.com/76677130/139528985-a2e93f97-be16-48cc-be42-190449ec2920.png)
-port
-![image](https://user-images.githubusercontent.com/76677130/139528684-cebf093f-0d3c-44b0-970a-7a8b4e26d0ba.png)
-ls
-![image](https://user-images.githubusercontent.com/76677130/139529080-ed714e4c-047f-4e83-bb75-dcb9fff79f6b.png)
+    ```
+    service apache2 restart
+    ```
 
 **Testing**
 * Buka **Longuetown**
@@ -819,32 +795,26 @@ ls
 Pada soal ini diminta untuk memberikan autentifikasi dengan username `luffy` dan password `onepiece` pada webserver **www.general.mecha.franky.a04.com**.
 
 **Penjelasan**
-1. membuat username dan password
-```
-htpasswd -b -c /etc/apache2/.htpasswd luffy onepiece
-
-## ubah /etc/apache2/sites-available/general.mecha.franky.a04.com.conf
-<Directory /var/www/general.mecha.franky.a04.com>
-    Options +FollowSymLinks -Multiviews
-    AllowOverride All
-</Directory>
-```
-htpass
-![image](https://user-images.githubusercontent.com/76677130/139529233-81523d73-24ea-42f0-afd8-0ca597f33590.png)
-2. buat file .htaccess di dalam /var/www/general.mecha.franky.a04.com
-```
-AuthType Basic
-AuthName "Restricted Content"
-AuthUserFile /etc/apache2/.htpasswd
-Require valid-user
-```
-ubah
-![image](https://user-images.githubusercontent.com/76677130/139529281-3b298efc-d55e-4259-ac99-ef1d99064592.png)
-3. restart apache
-```service apache2 restart```
-
-.htaccess
-![image](https://user-images.githubusercontent.com/76677130/139529475-915510b3-4db1-4c9d-85f7-e066eee7a393.png)
+1. Buka **Skypie**
+2. Buat username dan password
+    ```
+    htpasswd -b -c /etc/apache2/.htpasswd luffy onepiece
+    ```
+    ![image](https://user-images.githubusercontent.com/76677130/139529233-81523d73-24ea-42f0-afd8-0ca597f33590.png)
+3. Ubah **/etc/apache2/sites-available/general.mecha.franky.a04.com.conf**
+    ![image](https://user-images.githubusercontent.com/76677130/139529281-3b298efc-d55e-4259-ac99-ef1d99064592.png)
+4. Buat file **.htaccess** di dalam **/var/www/general.mecha.franky.a04.com**
+    ```
+    AuthType Basic
+    AuthName "Restricted Content"
+    AuthUserFile /etc/apache2/.htpasswd
+    Require valid-user
+    ```
+    ![image](https://user-images.githubusercontent.com/76677130/139529475-915510b3-4db1-4c9d-85f7-e066eee7a393.png)
+5. Restart apache
+    ```
+    service apache2 restart
+    ```
 
 **Testing**
 * Buka **Longuetown**
@@ -862,37 +832,35 @@ ubah
 Pada soal ini diminta untuk mengarahkan IP Skypie (**10.1.2.4**) ke **www.franky.a04.com**.
 
 **Penjelasan**
-1. Buat file .htaccess pada /var/www/html
-```
-RewriteEngine On
-RewriteBase /
-RewriteCond %{HTTP_HOST} ^10\.1\.2\.4$
-RewriteRule ^(.*)$ http://www.franky.a04.com [L,R=301]
-```
-2. Ubah /etc/apache2/sites-available/000-default.conf
-```
-<VirtualHost *:80>
+1. Buka **Skypie**
+2. Buat file .htaccess pada /var/www/html
+    ```
+    RewriteEngine On
+    RewriteBase /
+    RewriteCond %{HTTP_HOST} ^10\.1\.2\.4$
+    RewriteRule ^(.*)$ http://www.franky.a04.com [L,R=301]
+    ```
+    ![image](https://user-images.githubusercontent.com/76677130/139529941-591385a1-5956-4c8f-b3fa-fe07fe86e5de.png)
+3. Ubah /etc/apache2/sites-available/000-default.conf
+    ```
+    <VirtualHost *:80>
         ServerAdmin webmaster@localhost
         DocumentRoot /var/www/html
 
         <Directory /var/www/html>
-                Options +FollowSymLinks -Multiviews
-                AllowOverride All
+            Options +FollowSymLinks -Multiviews
+            AllowOverride All
         </Directory>
 
         ErrorLog ${APACHE_LOG_DIR}/error.log
         CustomLog ${APACHE_LOG_DIR}/access.log combined
-</VirtualHost>
-```
-3. Restart apache
-```
-service apache2 restart
-```
-4. Buka **Skypie**
-5. .htaccess
-![image](https://user-images.githubusercontent.com/76677130/139529941-591385a1-5956-4c8f-b3fa-fe07fe86e5de.png)
-ubah
-![image](https://user-images.githubusercontent.com/76677130/139529656-116540d4-6655-4d16-b22a-219c557e9b9d.png)
+    </VirtualHost>
+    ```
+    ![image](https://user-images.githubusercontent.com/76677130/139529656-116540d4-6655-4d16-b22a-219c557e9b9d.png)
+4. Restart apache
+    ```
+    service apache2 restart
+    ```
 
 **Testing**
 * Buka **Longuetown**
@@ -905,40 +873,40 @@ ubah
 Pada soal ini diminta untuk mengarahkan request gambar yang memiliki substring `franky`ke `franky.png` pada webserver **www.super.franky.a04.com**.
 
 **Penjelasan**
-1. buat file .htaccess pada /var/www/super.franky.a04.com
-```
-RewriteEngine On
-RewriteRule ^(.*)franky(.*)$ http://www.super.franky.a04.com/public/images/franky.png [L,R]
-```
-.htaccess
-![17a](https://user-images.githubusercontent.com/76677130/139530625-52df9680-112e-4a63-bb64-eb7270d04405.PNG)
-2. ubah /etc/apache2/sites-available/super.franky.a04.com.conf
-```
-<VirtualHost *:80>
+1. Buka **Skypie**
+2. Buat file **.htaccess** pada **/var/www/super.franky.a04.com**
+    ```
+    RewriteEngine On
+    RewriteRule ^(.*)franky(.*)$ http://www.super.franky.a04.com/public/images/franky.png [L,R]
+    ```
+    ![17a](https://user-images.githubusercontent.com/76677130/139530625-52df9680-112e-4a63-bb64-eb7270d04405.PNG)
+3. Ubah **/etc/apache2/sites-available/super.franky.a04.com.conf**
+    ```
+    <VirtualHost *:80>
         ServerName super.franky.a04.com
         ServerAlias www.super.franky.a04.com
         ServerAdmin webmaster@localhost
         DocumentRoot /var/www/super.franky.a04.com
 
         <Directory /var/www/super.franky.a04.com>
-                Options +FollowSymLinks -Multiviews
-                AllowOverride All
+            Options +FollowSymLinks -Multiviews
+            AllowOverride All
         </Directory>
 
         <Directory /var/www/super.franky.a04.com/public>
-                Options +Indexes
+            Options +Indexes
         </Directory>
 
         <Directory /var/www/super.franky.a04.com/public/css>
-                Options -Indexes
+            Options -Indexes
         </Directory>
 
         <Directory /var/www/super.franky.a04.com/public/images>
-                Options -Indexes
+            Options -Indexes
         </Directory>
 
         <Directory /var/www/super.franky.a04.com/public/js>
-                Options -Indexes
+            Options -Indexes
         </Directory>
 
         ErrorDocument 404 /error/404.html
@@ -947,15 +915,13 @@ RewriteRule ^(.*)franky(.*)$ http://www.super.franky.a04.com/public/images/frank
 
         ErrorLog ${APACHE_LOG_DIR}/error.log
         CustomLog ${APACHE_LOG_DIR}/access.log combined
-</VirtualHost>
-```
-
-ubah
-![17b](https://user-images.githubusercontent.com/76677130/139530636-6e51be58-7fa6-47ce-bc21-5a2f1969ebc5.PNG)
-
-3. restart apache
-```service apache2 restart```
-
+    </VirtualHost>
+    ```
+    ![17b](https://user-images.githubusercontent.com/76677130/139530636-6e51be58-7fa6-47ce-bc21-5a2f1969ebc5.PNG)
+4. Restart apache
+    ```
+    service apache2 restart
+    ```
 
 **Testing**
 * Buka **Longuetown**
